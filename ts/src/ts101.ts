@@ -20,3 +20,14 @@ let arr3 = arr.map((value) => {
 });
 console.log(arr3);
 
+let height: number = 5;
+
+for (let row = 1; row <= height; row++) {
+    let stars = '';
+    for (let column = 1; column <= row; column++) {
+    stars += '^';
+    }
+    console.log(stars);
+}  
+
+
