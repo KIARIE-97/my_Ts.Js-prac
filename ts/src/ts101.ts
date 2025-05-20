@@ -68,15 +68,127 @@ async function fetchUsers(): Promise<void> {
     const response = fetch("https://jsonplaceholder.typicode.com/users");
     const data = await response;
     const users = await data.json();
-    console.log(users[0]);
-    console.log(typeof users);
+    users.map((user: { name: string }) => {
+			console.log(user.name);
+		});
+        setTimeout(() => {}, 2000);
+    // console.log(users);
+    // console.log(typeof users);
 }
 
-fetchUsers()
-    .then(() => {
-        console.log("Users fetched successfully");
-    })
-    .catch((error) => {
-        console.error("Error fetching users:", error);
-    });
+// fetchUsers()
 
+//object oriented programming with Ts
+//class - this is a blueprint for creating objects
+
+class Person {
+	//properties
+	public name: string;
+	public age: number;
+	public gender: string;
+	protected DoB: Date;
+	private id: string;
+	//constructor - this is a special method that is called when an object is created
+	constructor(
+		_name: string,
+		_age: number,
+		_gender: string,
+		_DoB: Date,
+		_id: string
+	) {
+		this.name = _name;
+		this.age = _age;
+		this.gender = _gender;
+		this.DoB = _DoB;
+		this.id = _id;
+	}
+	//methods - this is a function that is defined inside a class
+	greet(): void {
+		console.log(
+			`hey ${this.name}, you are ${this.age} years old and you are a ${this.gender}`
+		);
+	}
+	public getAge() {
+        return new Date().getFullYear() - this.DoB.getFullYear()
+    };
+}
+  const sara= new Person("sara",30,"female", new Date("1993-01-01"), "12345");
+    // console.log(sara.getAge()); 
+
+  //example2
+  class BankAccount{
+constructor(protected balance: number, public accountHolder: string){}
+
+public deposit(amount: number): void{
+    if (this.validateAmount(amount)) {
+        this.balance += amount;
+    }
+}
+private validateAmount(amount: number): boolean {
+    return amount > 0;
+}
+public getBalance():number {
+    return this.balance;
+}
+
+public withDraw(amount:number): number | string {
+    if (this.validateWithdraw(amount)) {
+			return this.balance -= amount;
+		} else {
+			return `your balance is${this.balance}, you cannot withdraw ${amount}`;
+		}
+}
+
+private validateWithdraw(withdrawalamount: number) {
+	return withdrawalamount > 0 && withdrawalamount <= this.balance; //
+	// return this.balance > withdrawalamount;
+}
+  }
+//child class
+class SavingsAccount extends BankAccount{
+ constructor(private interestRate: number, balance: number, accountHolder: string){
+    super(balance, accountHolder);
+    
+ }
+ public calculateInterest():void {
+    const interest = this.balance * this.interestRate;
+    this.balance += interest;
+    console.log(`Interest of ${interest} added to the account`);
+ }
+}
+
+
+//   const saraAccount = new SavingsAccount(1, 500,"tiff");
+//   saraAccount.calculateInterest();
+  const saraAccount = new BankAccount(200,"sara")
+  console.log("initial bal")
+  console.log(saraAccount.getBalance()); 
+  saraAccount.deposit(500);
+    console.log("after deposit");
+  console.log(saraAccount.getBalance());
+  saraAccount.withDraw(800);
+    console.log("after withdraw");
+  console.log(saraAccount.getBalance()); 
+  
+
+  const text = document.getElementById("message");
+  const app = document.getElementById("app");
+	// 2. Create a new <p></p> element programmatically
+	const p = document.createElement("p");
+	// 3. Add the text content
+	p.textContent = "Hello, World!";
+	// 4. Append the p element to the div element
+	app?.appendChild(p);
+
+    //create a paragraph display a message when the button is clicked
+function displayText() {
+	const message = "Button clicked!";
+	const p = document.createElement("p");
+	p.textContent = message;
+	app?.appendChild(p);
+	if (text) {
+		text.textContent = message;
+	}
+}
+
+    

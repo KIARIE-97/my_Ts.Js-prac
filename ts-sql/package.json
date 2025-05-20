@@ -1,0 +1,21 @@
+{
+	"name": "ts-sql",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx watch src/main.ts",
+		"build": "tsc",
+		"start": "node dist/main.js"
+	},
+	"devDependencies": {
+		"@types/node": "^22.15.19",
+		"@types/pg": "^8.15.2",
+		"typescript": "~5.8.3",
+		"tsx": "^4.19.4"
+	},
+	"dependencies": {
+		"dotenv": "^16.5.0",
+		"pg": "^8.16.0"
+	}
+}
